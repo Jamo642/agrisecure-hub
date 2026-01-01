@@ -11,6 +11,8 @@ import Marketplace from "./pages/Marketplace";
 import Products from "./pages/Products";
 import DiseaseScanner from "./pages/DiseaseScanner";
 import AIChat from "./pages/AIChat";
+import EnhancedAuth from "./pages/EnhancedAuth";
+import EnhancedDashboard from "./pages/EnhancedDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,7 +27,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/new" element={<EnhancedAuth />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/enhanced" element={<EnhancedDashboard />} />
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/products" element={<Products />} />
             <Route path="/disease-scanner" element={<DiseaseScanner />} />
