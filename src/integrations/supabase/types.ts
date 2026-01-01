@@ -372,38 +372,21 @@ export type Database = {
       }
     }
     Views: {
-      public_profiles: {
-        Row: {
-          avatar_url: string | null
-          county: string | null
-          created_at: string | null
-          full_name: string | null
-          id: string | null
-          is_verified: boolean | null
-          user_id: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          county?: string | null
-          created_at?: string | null
-          full_name?: string | null
-          id?: string | null
-          is_verified?: boolean | null
-          user_id?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          county?: string | null
-          created_at?: string | null
-          full_name?: string | null
-          id?: string | null
-          is_verified?: boolean | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
+      get_public_profile: {
+        Args: { profile_user_id: string }
+        Returns: {
+          avatar_url: string
+          county: string
+          created_at: string
+          full_name: string
+          id: string
+          is_verified: boolean
+          user_id: string
+        }[]
+      }
       get_user_role: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["app_role"]
