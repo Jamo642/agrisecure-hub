@@ -1,8 +1,9 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, Tractor, ShoppingCart, Package, TrendingUp, Bot, Users } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Loader2, Tractor, ShoppingCart, Package, TrendingUp, Bot, Users, Camera, MessageSquare } from 'lucide-react';
 import { ROLE_LABELS } from '@/types/auth';
 
 export default function Dashboard() {
@@ -19,6 +20,9 @@ export default function Dashboard() {
   if (!user) {
     return <Navigate to="/auth" replace />;
   }
+
+  const isFarmer = role === 'farmer_large' || role === 'farmer_small';
+  const canSell = isFarmer || role === 'seller';
 
   const getDashboardContent = () => {
     switch (role) {
@@ -87,11 +91,11 @@ export default function Dashboard() {
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
-          <CardContent>
-            <p className="text-muted-foreground">
-              Your dashboard is ready! More features coming soon including AI disease detection, 
-              marketplace, and financial tools.
-            </p>
+          <CardContent className="flex flex-wrap gap-3">
+            <Button asChild><Link to="/marketplace"><ShoppingCart className="h-4 w-4 mr-2" />Marketplace</Link></Button>
+            <Button asChild variant="outline"><Link to="/ai-chat"><MessageSquare className="h-4 w-4 mr-2" />AI Assistant</Link></Button>
+            {isFarmer && <Button asChild variant="outline"><Link to="/disease-scanner"><Camera className="h-4 w-4 mr-2" />Disease Scanner</Link></Button>}
+            {canSell && <Button asChild variant="outline"><Link to="/products"><Package className="h-4 w-4 mr-2" />My Products</Link></Button>}
           </CardContent>
         </Card>
       </div>

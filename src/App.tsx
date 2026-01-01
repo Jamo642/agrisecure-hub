@@ -7,6 +7,10 @@ import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import Marketplace from "./pages/Marketplace";
+import Products from "./pages/Products";
+import DiseaseScanner from "./pages/DiseaseScanner";
+import AIChat from "./pages/AIChat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +26,10 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/disease-scanner" element={<DiseaseScanner />} />
+            <Route path="/ai-chat" element={<AIChat />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
